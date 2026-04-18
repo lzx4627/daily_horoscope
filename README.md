@@ -30,7 +30,6 @@ npm install
 npm run dev:server
 ```
 
-默认地址：`http://localhost:3000`
 默认地址：`http://localhost:3100`
 
 ### 3. 启动前端
