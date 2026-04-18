@@ -18,6 +18,35 @@
 
 ## 快速开始
 
+## Docker 运行
+
+如果你不希望项目依赖污染本地环境，推荐直接使用 Docker：
+
+```bash
+docker compose up --build -d
+```
+
+启动后：
+
+- 前端访问：`http://localhost:8080`
+- 后端 API：`http://localhost:3100`
+- 健康检查：`http://localhost:8080/health`
+
+常用命令：
+
+```bash
+npm run docker:up
+npm run docker:down
+npm run docker:logs
+```
+
+说明：
+
+- `web` 容器会构建 `uni-app` 的 `H5` 版本并通过 `nginx` 提供服务。
+- `api` 容器会启动 `Express` 服务，并将数据持久化到 Docker Volume。
+- 这样你本地无需安装 Node、Vite 或其它前端依赖即可运行 Web 版本。
+- `微信小程序` 和 `App` 的源码仍在 `apps/client`，后续可继续用 `HBuilderX` 或对应流水线打包发布。
+
 ### 1. 安装依赖
 
 ```bash

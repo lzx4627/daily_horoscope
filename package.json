@@ -5,11 +5,16 @@
   "workspaces": [
     "apps/*"
   ],
+  "devDependencies": {
+    "vite": "5.2.8"
+  },
   "scripts": {
     "dev:server": "npm run dev -w apps/server",
     "dev:client": "npm run dev -w apps/client",
     "build:server": "npm run build -w apps/server",
-    "build:client": "npm run build -w apps/client"
+    "build:client": "npm run build -w apps/client",
+    "docker:up": "docker compose up --build -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
   }
 }
-

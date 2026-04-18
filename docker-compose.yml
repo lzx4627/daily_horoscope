@@ -1,0 +1,28 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: daily-horoscope-api
+    environment:
+      PORT: 3100
+    ports:
+      - "3100:3100"
+    volumes:
+      - daily_horoscope_data:/app/apps/server/data
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+      args:
+        VITE_API_BASE_URL: /api
+    container_name: daily-horoscope-web
+    depends_on:
+      - api
+    ports:
+      - "8080:80"
+
+volumes:
+  daily_horoscope_data:
+
