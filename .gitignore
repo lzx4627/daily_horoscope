@@ -1,0 +1,11 @@
+node_modules
+dist
+.DS_Store
+.idea
+.vscode
+coverage
+apps/server/data/db.json
+apps/client/dist
+apps/client/.hbuilderx
+*.log
+

@@ -1,0 +1,22 @@
+{
+  "name": "五行日报助手",
+  "appid": "__UNI__DAILY_HOROSCOPE",
+  "description": "记录心情与投资盈亏，生成五行分析日报。",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "app-plus": {
+    "usingComponents": true
+  },
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": false
+    },
+    "usingComponents": true
+  },
+  "h5": {
+    "title": "五行日报助手"
+  }
+}
+

@@ -1,0 +1,31 @@
+{
+  "name": "@daily-horoscope/client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env UNI_PLATFORM=h5 vite",
+    "build": "cross-env UNI_PLATFORM=h5 vite build",
+    "dev:h5": "cross-env UNI_PLATFORM=h5 vite",
+    "dev:mp-weixin": "cross-env UNI_PLATFORM=mp-weixin vite",
+    "build:h5": "cross-env UNI_PLATFORM=h5 vite build",
+    "build:mp-weixin": "cross-env UNI_PLATFORM=mp-weixin vite build"
+  },
+  "dependencies": {
+    "@dcloudio/uni-app": "latest",
+    "@dcloudio/uni-cli-i18n": "latest",
+    "@dcloudio/uni-cli-shared": "latest",
+    "@dcloudio/uni-h5": "latest",
+    "@dcloudio/uni-mp-weixin": "latest",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@dcloudio/types": "latest",
+    "@dcloudio/vite-plugin-uni": "latest",
+    "cross-env": "^7.0.3",
+    "sass": "^1.87.0",
+    "semver": "^7.7.1",
+    "typescript": "^5.8.2",
+    "vite": "^5.4.14",
+    "webpack": "^5.99.9"
+  }
+}
