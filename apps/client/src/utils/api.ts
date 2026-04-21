@@ -1,4 +1,5 @@
-import type { DailyReport, InvestmentLog, MoodLog, OverviewResponse, UserProfile } from '../types';
+import type { AuthResponse, DailyReport, InvestmentLog, MoodLog, OverviewResponse, UserProfile } from '../types';
+import { clearToken, getToken } from './auth';
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3100/api';
 
@@ -14,13 +15,32 @@ function request<T>({ url, method = 'GET', data }: RequestOptions): Promise<T> {
       url: `${baseUrl}${url}`,
       method,
       data,
-      success: (response) => resolve(response.data as T),
+      header: getToken()
+        ? {
+            Authorization: `Bearer ${getToken()}`
+          }
+        : {},
+      success: (response) => {
+        if (response.statusCode === 401) {
+          clearToken();
+          uni.reLaunch({ url: '/pages/login/index' });
+          reject(new Error('Unauthorized'));
+          return;
+        }
+        resolve(response.data as T);
+      },
       fail: reject
     });
   });
 }
 
 export const api = {
+  register(data: { email: string; password: string; name?: string }) {
+    return request<AuthResponse>({ url: '/auth/register', method: 'POST', data });
+  },
+  login(data: { email: string; password: string }) {
+    return request<AuthResponse>({ url: '/auth/login', method: 'POST', data });
+  },
   getOverview(date: string) {
     return request<OverviewResponse>({ url: `/overview?date=${date}` });
   },

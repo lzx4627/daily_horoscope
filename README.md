@@ -13,7 +13,7 @@
 
 ## 项目结构
 
-- `apps/server`：`Express + TypeScript` API 服务，内置本地 JSON 持久化。
+- `apps/server`：`Express + TypeScript` API 服务，当前使用 `PostgreSQL + JWT`。
 - `apps/client`：`uni-app + Vue 3 + TypeScript` 前端，可扩展到 `H5 / App / 微信小程序`。
 
 ## 快速开始
@@ -43,7 +43,8 @@ npm run docker:logs
 说明：
 
 - `web` 容器会构建 `uni-app` 的 `H5` 版本并通过 `nginx` 提供服务。
-- `api` 容器会启动 `Express` 服务，并将数据持久化到 Docker Volume。
+- `api` 容器会启动 `Express` 服务，并连接 `PostgreSQL`。
+- `db` 容器提供独立数据库存储，数据落在 Docker Volume。
 - 这样你本地无需安装 Node、Vite 或其它前端依赖即可运行 Web 版本。
 - `微信小程序` 和 `App` 的源码仍在 `apps/client`，后续可继续用 `HBuilderX` 或对应流水线打包发布。
 
@@ -95,7 +96,6 @@ npm run build:client:mp-weixin
 
 然后：
 
-- 用微信开发者工具打开 `apps/client/dist/build/mp-weixin`
 - 用微信开发者工具打开 `apps/client/dist`
 - 在 `apps/client/src/manifest.json` 中把 `mp-weixin.appid` 替换成你自己的 AppID
 - 如果要请求本地后端，请把接口改成可访问域名，或先通过 Docker 验证 H5 逻辑
@@ -123,6 +123,8 @@ npm run build:client:app
 ## 主要接口
 
 - `GET /health`
+- `POST /api/auth/register`
+- `POST /api/auth/login`
 - `GET /api/profile`
 - `PUT /api/profile`
 - `GET /api/moods`
@@ -137,5 +139,6 @@ npm run build:client:app
 ## 当前实现说明
 
 - 五行分析当前采用本地规则引擎，便于快速上线 MVP。
+- 当前已接入邮箱注册登录与 JWT 鉴权。
 - 后续可在 `apps/server/src/analysis.ts` 基础上接入大模型，增强日报语言风格与个性化建议。
-- 数据当前保存于 `apps/server/data/db.json`，适合原型验证；正式上线建议切换到 `PostgreSQL` 或 `MySQL`。
+- 当前默认通过 Docker 编排 `PostgreSQL`；如果脱离 Docker 运行，请自行提供 `DATABASE_URL`。

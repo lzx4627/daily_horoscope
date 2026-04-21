@@ -1,15 +1,33 @@
 services:
+  db:
+    image: postgres:16-alpine
+    container_name: daily-horoscope-db
+    environment:
+      POSTGRES_DB: daily_horoscope
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - daily_horoscope_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d daily_horoscope"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   api:
     build:
       context: .
       dockerfile: Dockerfile.server
     container_name: daily-horoscope-api
+    depends_on:
+      db:
+        condition: service_healthy
     environment:
       PORT: 3100
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/daily_horoscope
+      JWT_SECRET: daily-horoscope-secret
     ports:
       - "3100:3100"
-    volumes:
-      - daily_horoscope_data:/app/apps/server/data
 
   web:
     build:
@@ -24,5 +42,4 @@ services:
       - "8080:80"
 
 volumes:
-  daily_horoscope_data:
-
+  daily_horoscope_postgres:

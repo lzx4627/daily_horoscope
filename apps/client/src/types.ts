@@ -63,3 +63,11 @@ export interface OverviewResponse {
   report: DailyReport;
 }
 
+export interface AuthResponse {
+  token: string;
+  user: {
+    id: string;
+    email: string;
+  };
+  profile: UserProfile;
+}

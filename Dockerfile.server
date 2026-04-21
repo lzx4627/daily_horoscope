@@ -17,6 +17,8 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV PORT=3100
+ENV DATABASE_URL=postgresql://postgres:postgres@db:5432/daily_horoscope
+ENV JWT_SECRET=daily-horoscope-secret
 
 COPY package.json package-lock.json tsconfig.base.json ./
 COPY apps/server/package.json apps/server/tsconfig.json ./apps/server/
@@ -24,9 +26,6 @@ COPY apps/server/package.json apps/server/tsconfig.json ./apps/server/
 RUN npm ci --omit=dev
 
 COPY --from=builder /app/apps/server/dist ./apps/server/dist
-COPY --from=builder /app/apps/server/data ./apps/server/data
-
 EXPOSE 3100
 
 CMD ["npm", "run", "start", "-w", "apps/server"]
-

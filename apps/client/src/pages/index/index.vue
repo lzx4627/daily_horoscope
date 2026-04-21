@@ -51,6 +51,7 @@ import { ref } from 'vue';
 
 import type { OverviewResponse } from '../../types';
 import { api } from '../../utils/api';
+import { isLoggedIn } from '../../utils/auth';
 import { today } from '../../utils/date';
 
 const overview = ref<OverviewResponse | null>(null);
@@ -64,7 +65,10 @@ function navigate(url: string) {
 }
 
 onShow(() => {
+  if (!isLoggedIn()) {
+    uni.reLaunch({ url: '/pages/login/index' });
+    return;
+  }
   void loadOverview();
 });
 </script>
-

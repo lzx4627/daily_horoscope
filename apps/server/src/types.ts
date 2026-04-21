@@ -11,6 +11,12 @@ export interface UserProfile {
   investmentPreference: string;
 }
 
+export interface DatabaseUser {
+  id: string;
+  email: string;
+  passwordHash: string;
+}
+
 export interface MoodLog {
   id: string;
   date: string;
@@ -63,10 +69,12 @@ export interface DailyReport {
   cautions: string[];
 }
 
-export interface DatabaseShape {
+export interface AuthResponse {
+  token: string;
+  user: {
+    id: string;
+    email: string;
+  };
   profile: UserProfile;
-  moods: MoodLog[];
-  investments: InvestmentLog[];
-  reports: DailyReport[];
 }
 

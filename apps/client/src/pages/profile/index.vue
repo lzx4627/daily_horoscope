@@ -42,6 +42,7 @@
       </view>
 
       <button class="button-primary" @click="save">保存档案</button>
+      <button class="button-secondary" style="margin-top: 16rpx" @click="logout">退出登录</button>
     </view>
   </view>
 </template>
@@ -51,6 +52,7 @@ import { onLoad } from '@dcloudio/uni-app';
 import { reactive } from 'vue';
 
 import { api } from '../../utils/api';
+import { clearToken } from '../../utils/auth';
 import type { FiveElement, UserProfile } from '../../types';
 
 const elements: FiveElement[] = ['wood', 'fire', 'earth', 'metal', 'water'];
@@ -86,6 +88,11 @@ async function loadProfile() {
 async function save() {
   await api.saveProfile(form);
   uni.showToast({ title: '档案已保存', icon: 'success' });
+}
+
+function logout() {
+  clearToken();
+  uni.reLaunch({ url: '/pages/login/index' });
 }
 
 onLoad(() => {
