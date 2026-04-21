@@ -11,8 +11,12 @@
   "scripts": {
     "dev:server": "npm run dev -w apps/server",
     "dev:client": "npm run dev -w apps/client",
+    "dev:client:app": "npm run dev:app -w apps/client",
+    "dev:client:mp-weixin": "npm run dev:mp-weixin -w apps/client",
     "build:server": "npm run build -w apps/server",
     "build:client": "npm run build -w apps/client",
+    "build:client:app": "npm run build:app -w apps/client",
+    "build:client:mp-weixin": "npm run build:mp-weixin -w apps/client",
     "docker:up": "docker compose up --build -d",
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs -f"

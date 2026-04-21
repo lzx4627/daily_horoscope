@@ -37,6 +37,30 @@
       }
     }
   ],
+  "tabBar": {
+    "color": "#6b7280",
+    "selectedColor": "#4338ca",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/report/index",
+        "text": "日报"
+      },
+      {
+        "pagePath": "pages/history/index",
+        "text": "记录"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "五行日报助手",
@@ -44,4 +68,3 @@
     "backgroundColor": "#f5f7fb"
   }
 }
-

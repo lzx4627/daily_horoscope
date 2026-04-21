@@ -6,17 +6,32 @@
   "versionCode": "100",
   "transformPx": false,
   "app-plus": {
-    "usingComponents": true
+    "usingComponents": true,
+    "titleNView": true,
+    "optimization": {
+      "subPackages": true
+    },
+    "distribute": {
+      "android": {
+        "permissions": [
+          "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>"
+        ]
+      },
+      "ios": {}
+    }
   },
   "mp-weixin": {
-    "appid": "",
+    "appid": "请替换为你的小程序 AppID",
     "setting": {
       "urlCheck": false
     },
-    "usingComponents": true
+    "usingComponents": true,
+    "optimization": {
+      "subPackages": true
+    }
   },
   "h5": {
     "title": "五行日报助手"
   }
 }
-

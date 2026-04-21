@@ -75,6 +75,51 @@ npm run dev:client
 - App：同样基于 `uni-app` 打包到 `app-plus`。
 - 真机联调时，把 `VITE_API_BASE_URL` 改成你的局域网服务地址，例如 `http://192.168.1.10:3100/api`。
 
+## App 与小程序快速验证
+
+### 方案一：先用 Docker 验证业务功能
+
+```bash
+docker compose up --build -d
+```
+
+打开 `http://localhost:8080`，可以最快验证心情记录、投资记录、日报生成和历史记录。
+
+### 方案二：验证微信小程序源码
+
+先构建小程序产物：
+
+```bash
+npm run build:client:mp-weixin
+```
+
+然后：
+
+- 用微信开发者工具打开 `apps/client/dist/build/mp-weixin`
+- 用微信开发者工具打开 `apps/client/dist`
+- 在 `apps/client/src/manifest.json` 中把 `mp-weixin.appid` 替换成你自己的 AppID
+- 如果要请求本地后端，请把接口改成可访问域名，或先通过 Docker 验证 H5 逻辑
+
+### 方案三：验证 App 源码
+
+先构建 App 产物：
+
+```bash
+npm run build:client:app
+```
+
+然后：
+
+- 使用 `HBuilderX` 导入 `apps/client`
+- 运行到 Android 模拟器或真机
+- 把 `apps/client/.env.app.example` 复制为对应环境文件，并把 `VITE_API_BASE_URL` 改为局域网可访问地址
+
+### 当前产物目录
+
+- H5：`apps/client/dist`
+- 微信小程序：`apps/client/dist`
+- App：`apps/client/dist/build/app`
+
 ## 主要接口
 
 - `GET /health`

@@ -6,12 +6,15 @@
     "dev": "cross-env UNI_PLATFORM=h5 vite",
     "build": "cross-env UNI_PLATFORM=h5 vite build",
     "dev:h5": "cross-env UNI_PLATFORM=h5 vite",
+    "dev:app": "cross-env UNI_PLATFORM=app vite",
     "dev:mp-weixin": "cross-env UNI_PLATFORM=mp-weixin vite",
     "build:h5": "cross-env UNI_PLATFORM=h5 vite build",
+    "build:app": "cross-env UNI_PLATFORM=app vite build",
     "build:mp-weixin": "cross-env UNI_PLATFORM=mp-weixin vite build"
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-alpha-5000720260416001",
+    "@dcloudio/uni-app-plus": "3.0.0-alpha-5000720260416001",
     "@dcloudio/uni-h5": "3.0.0-alpha-5000720260416001",
     "@dcloudio/uni-mp-weixin": "3.0.0-alpha-5000720260416001",
     "vue": "3.4.21"
